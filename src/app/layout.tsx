@@ -16,10 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={dm_sans.className}>
+      <body className={`relative ${dm_sans.className}`}>
         <Navbar />
-        {children}
-        <Footer />
+        <div id="page-body">{children}</div>
+        <Footer/>
       </body>
     </html>
   );

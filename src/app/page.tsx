@@ -1,8 +1,11 @@
+import HeroBanner from '@/components/UI/HeroBanner'
 import React from 'react'
 
 const page = () => {
   return (
-    <div>page</div>
+    <>
+    <HeroBanner/>
+    </>
   )
 }
 
