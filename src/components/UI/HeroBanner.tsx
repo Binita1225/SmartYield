@@ -2,6 +2,7 @@ import React from "react";
 import { Montserrat } from "next/font/google";
 import PrimaryButton from "./PrimaryButton";
 import SecondaryButton from "./SecondaryButton";
+import Link from "next/link";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 const HeroBanner = () => {
@@ -30,7 +31,7 @@ const HeroBanner = () => {
             millions.
           </p>
           <div className="py-3 flex gap-4">
-            <PrimaryButton name="Explore" />
+            <Link href="#about"><PrimaryButton name="Explore" /></Link>
             <SecondaryButton name="Study Data" />
           </div>
         </div>
@@ -48,12 +49,12 @@ const HeroBanner = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <g clip-path="url(#clip0_1415_19695)">
+            <g clipPath="url(#clip0_1415_19695)">
               <path
                 d="M139.128 138.504C170.058 107.574 170.058 57.4259 139.128 26.4956C108.198 -4.43471 58.0498 -4.43472 27.1195 26.4956C-3.81081 57.4259 -3.81081 107.574 27.1195 138.504C58.0498 169.434 108.198 169.434 139.128 138.504Z"
                 fill="white"
                 stroke="#231F20"
-                stroke-width="6.5959"
+                strokeWidth="6.5959"
               ></path>
               <path
                 d="M154.405 82.4999C154.405 121.868 122.493 153.781 83.1244 153.781C43.7563 153.781 11.8438 121.868 11.8438 82.4999H154.405Z"

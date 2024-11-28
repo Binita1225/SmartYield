@@ -39,7 +39,7 @@ const Navbar = () => {
     },
     {
       name: "About",
-      href: "/about",
+      href: "#about",
     },
     {
       name: "Contact",
@@ -50,8 +50,8 @@ const Navbar = () => {
       href: "/guide",
     },
     {
-      name: "Research",
-      href: "/research",
+      name: "Our-team",
+      href: "#our-team",
     },
   ];
 
@@ -69,7 +69,7 @@ const Navbar = () => {
                 src="/NavLogo.png"
                 alt="logo"
                 className={`absolute top-0 max-lg:w-[100px] w-[200px] bg-transparent transition-all duration-300 ease-in-out ${
-                  scrolled ? "top-[-40px]" : "top-0"
+                  scrolled ? "top-[-60px]" : "top-0"
                 }`}
               />
             </Link>

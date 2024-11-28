@@ -1,12 +1,16 @@
-import HeroBanner from '@/components/UI/HeroBanner'
-import React from 'react'
+import Aboutus from "@/components/UI/Aboutus";
+import HeroBanner from "@/components/UI/HeroBanner";
+import OurTeam from "@/components/UI/OurTeam";
+import React from "react";
 
 const page = () => {
   return (
     <>
-    <HeroBanner/>
+      <HeroBanner />
+      <Aboutus />
+      <OurTeam/>
     </>
-  )
-}
+  );
+};
 
-export default page
+export default page;
