@@ -1,13 +1,13 @@
 "use client";
 import HowToUse from "@/components/UI/HowToUse";
 import Results from "@/components/UI/results";
-import SecondaryButton from "@/components/UI/SecondaryButton";
 import { Montserrat } from "next/font/google";
 import React, { useEffect, useState } from "react";
 const montserrat = Montserrat({ subsets: ["latin"] });
 import { districts } from "@/Data/districtData";
 import axios from "axios";
 import { port } from "@/constants/appl.constant";
+import Link from "next/link";
 type DistrictData = {
   district: string;
 };
@@ -17,7 +17,6 @@ export const page = () => {
   const [searchresults, setSearchResults] = useState<DistrictData[]>([]);
   const [results, setResults] = useState({});
   const [loading, setLoading] = useState(false);
-  const [userSelect, setUserSelect] = useState("");
   const findDistrict = () => {
     const matchedDistricts = districts.filter((data) =>
       data.district.toLowerCase().includes(userInput.toLowerCase())
@@ -31,14 +30,15 @@ export const page = () => {
     }
   }, [userInput]);
 
-  const fetchResults = async (e?: any) => {
+  const fetchResults = async (selectedDistrict: string, e?: any) => {
+    console.log(selectedDistrict);
     if (e) {
       e.preventDefault();
     }
     try {
       setLoading(true);
       const payload: DistrictData = {
-        district: userSelect,
+        district: selectedDistrict,
       };
       const response = await axios.post(
         `${port}/prediction/getPredictionByDistrict`,
@@ -56,6 +56,7 @@ export const page = () => {
 
   return (
     <section className="bg-[#F2ECDB] h-[100vh] overflow-auto">
+      <Link href="/study-data">go Back</Link>
       <div className="w-[800px] text-center mx-auto py-10">
         <h2
           className={`text-[3rem] tracking-[-2.72px] leading-[4.5rem] text-center font-[500] ${montserrat.className}`}
@@ -89,8 +90,7 @@ export const page = () => {
                       key={index}
                       className="py-3 cursor-pointer hover:bg-[#F2ECDB]"
                       onClick={() => {
-                        setUserSelect(data.district);
-                        fetchResults();
+                        fetchResults(data.district);
                       }}
                     >
                       {data.district}

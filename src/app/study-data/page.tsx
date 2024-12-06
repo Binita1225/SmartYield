@@ -38,7 +38,7 @@ const page = () => {
             <Link href="/study-data/search-by-region">
               <PrimaryButton name="Explore Region Data" />
             </Link>
-            <Link href="">
+            <Link href="/study-data/custom-implementation">
               <SecondaryButton name="Custom Data Implementation" />
             </Link>
           </div>
