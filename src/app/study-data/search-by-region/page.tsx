@@ -8,6 +8,7 @@ import { districts } from "@/Data/districtData";
 import axios from "axios";
 import { port } from "@/constants/appl.constant";
 import Link from "next/link";
+import PrimaryButton from "@/components/UI/PrimaryButton";
 type DistrictData = {
   district: string;
 };
@@ -56,9 +57,15 @@ export const page = () => {
 
   return (
     <section className="bg-[#F2ECDB] h-[100vh] overflow-auto">
-      <Link href="/study-data" className="text-center">
-        go Back
+      <Link
+        href="/study-data"
+        className="flex items-center justify-center my-3"
+      >
+        <button className=" text-red-500 px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-500 hover:text-white">
+          Go Back
+        </button>
       </Link>
+
       <div className="w-[800px] text-center mx-auto py-10">
         <h2
           className={`text-[3rem] tracking-[-2.72px] leading-[4.5rem] text-center font-[500] ${montserrat.className}`}
