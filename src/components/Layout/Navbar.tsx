@@ -41,7 +41,7 @@ const Navbar = () => {
       name: "About",
       href: "#about",
     },
-    
+
     {
       name: "How it works",
       href: "/guide",
@@ -87,7 +87,9 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="max-lg:hidden">
-            <PrimaryButton name="Login" />
+            <Link href="/Auth/login">
+              <PrimaryButton name="Login" />
+            </Link>
           </div>
           <button
             className="lg:hidden"

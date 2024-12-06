@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { port } from "@/constants/appl.constant";
+import Logo from "@/components/UI/Logo";
+import LoginButton from "@/components/UI/LoginButton";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,45 +23,44 @@ const LoginPage = () => {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F2ECDB]">
-      <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
-        <h2 className="text-2xl font-bold mb-6 text-gray-700 text-center">
-          Login
-        </h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full p-2 rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              placeholder="user@example.com"
-              required
-            />
+    <div className="min-h-screen flex items-center justify-center bg-[#F2ECDB] bg-cover ">
+      <div className="w-[900px] bg-[url('/login-bg.svg')] bg-no-repeat bg-contain h-[50vh]">
+        <div className="w-[400px] mx-auto bg-white p-10 rounded-md">
+          <div className="flex items-center justify-center">
+            <Logo />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full p-2 rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              placeholder="••••••••"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            Login
-          </button>
-        </form>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="mt-1 block w-full p-2 rounded-md  border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
+                placeholder="user@example.com"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 block w-full p-2 rounded-md  border-2 border-gray-300 shadow-sm focus:outline-none focus:border-[#4C6F35] sm:text-sm"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            <div className="w-full">
+              <LoginButton name="Login" />
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
