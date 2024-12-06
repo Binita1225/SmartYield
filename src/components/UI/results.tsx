@@ -95,7 +95,7 @@ const Results = ({ response }) => {
         <tr className="border border-[#000] ">
           <td className="border border-[#000] p-2">Predicted Value</td>
           <td className="border border-[#000] p-2">
-            <span style={{ color: borderColor }}>{prediction}</span>
+            <span style={{ color: borderColor }}>{predictionResult}</span>
           </td>
         </tr>
         <tr className="border border-[#000]">
@@ -104,7 +104,7 @@ const Results = ({ response }) => {
           </td>
           <td className="border border-[#000] p-2">
             <span style={{ color: borderColor }}>
-              {prediction / response.inputData.productionArea}{" "}
+              {predictionResult / response.inputData.productionArea}{" "}
             </span>
             Per Hector Area
           </td>
@@ -129,13 +129,19 @@ const Results = ({ response }) => {
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2 text-left"> Relative Humidity</td>
+          <td className="border border-[#000] p-2 text-left">
+            {" "}
+            Relative Humidity
+          </td>
           <td className="border border-[#000] p-2">
             {response.inputData.relativeHumidity}
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2 text-left"> Soil Temprature</td>
+          <td className="border border-[#000] p-2 text-left">
+            {" "}
+            Soil Temprature
+          </td>
           <td className="border border-[#000] p-2">
             {response.inputData.soilTemp}
           </td>
@@ -146,7 +152,7 @@ const Results = ({ response }) => {
             {response.inputData.sand}
           </td>
         </tr>
-        <tr className="border border-[#000] "> 
+        <tr className="border border-[#000] ">
           <td className="border border-[#000] p-2 text-left">phLevel</td>
           <td className="border border-[#000] p-2">
             {response.inputData.phLevel}
@@ -171,7 +177,9 @@ const Results = ({ response }) => {
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2 text-left">Production Area</td>
+          <td className="border border-[#000] p-2 text-left">
+            Production Area
+          </td>
           <td className="border border-[#000] p-2">
             {response.inputData.productionArea}
           </td>
