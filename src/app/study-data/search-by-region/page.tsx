@@ -7,7 +7,7 @@ import React, { useEffect, useState } from "react";
 const montserrat = Montserrat({ subsets: ["latin"] });
 import { districts } from "@/Data/districtData";
 import axios from "axios";
-
+import { port } from "@/constants/appl.constant";
 type DistrictData = {
   district: string;
 };
@@ -15,9 +15,7 @@ type DistrictData = {
 export const page = () => {
   const [userInput, setUserInput] = useState<string>("");
   const [searchresults, setSearchResults] = useState<DistrictData[]>([]);
-  const [error, seterror] = useState<boolean>(Boolean);
-  const [showprediction, setShowPrediction] = useState<boolean>(false);
-
+  const [results, setResults] = useState({});
   const findDistrict = () => {
     const matchedDistricts = districts.filter((data) =>
       data.district.toLowerCase().includes(userInput.toLowerCase())
@@ -31,17 +29,14 @@ export const page = () => {
     }
   }, [userInput]);
 
-  const fetchResults = async (e: React.FormEvent<HTMLFormElement>) => {
+  const fetchResults = async (e: any) => {
     e.preventDefault();
-
     try {
       const payload: DistrictData = {
         district: userInput,
       };
-      const response = await axios.get(
-        "https://your-api-endpoint.com/resource",
-        payload
-      );
+      const response = await axios.post(`${port}/`, payload);
+      setResults(response.data);
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -60,16 +55,15 @@ export const page = () => {
           <form className="pt-10 flex gap-2" onSubmit={fetchResults}>
             <input
               type="text"
-              className="w-[85%] border border-[#4C6F35] bg-transparent focus:outline-none focus:border-[#A77523] placeholder-[#4C6F35] px-4"
+              className="w-full py-3 border border-[#4C6F35] bg-transparent focus:outline-none focus:border-[#A77523] placeholder-[#4C6F35] px-4"
               value={userInput}
               placeholder="Search the regions you want to predict"
               onChange={(e) => setUserInput(e.target.value)}
             />
-            <SecondaryButton name="search" />
           </form>
           {userInput.length > 1 ? (
             <>
-              <div className="absolute w-[92.5%] bg-[#FAF8F2] h-[200px] overflow-auto border-[]">
+              <div className="absolute w-full bg-[#FAF8F2] h-[200px] overflow-auto border-[]">
                 <p className="text-[#4C6F35] text-[22px] py-3">
                   Search Results :
                 </p>
@@ -83,6 +77,7 @@ export const page = () => {
                     <div
                       key={index}
                       className="py-3 cursor-pointer hover:bg-[#F2ECDB]"
+                      onClick={fetchResults}
                     >
                       {data.district}
                     </div>
@@ -90,9 +85,12 @@ export const page = () => {
                 })}
               </div>
             </>
-          ) : (
-            <></>
-          )}
+          ) : null}
+          {Object.keys(results).length > 0 ? (
+            <div>
+              <Results response={results} />
+            </div>
+          ) : null}
         </div>
         <HowToUse />
       </div>
