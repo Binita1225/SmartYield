@@ -56,7 +56,9 @@ export const page = () => {
 
   return (
     <section className="bg-[#F2ECDB] h-[100vh] overflow-auto">
-      <Link href="/study-data">go Back</Link>
+      <Link href="/study-data" className="text-center">
+        go Back
+      </Link>
       <div className="w-[800px] text-center mx-auto py-10">
         <h2
           className={`text-[3rem] tracking-[-2.72px] leading-[4.5rem] text-center font-[500] ${montserrat.className}`}
@@ -64,7 +66,7 @@ export const page = () => {
           Search any Districts of Nepal
         </h2>
         <div className="relative">
-          <form className="pt-10 flex gap-2" onSubmit={fetchResults}>
+          <form className="pt-10 flex gap-2">
             <input
               type="text"
               className="w-full py-3 border border-[#4C6F35] bg-transparent focus:outline-none focus:border-[#A77523] placeholder-[#4C6F35] px-4"

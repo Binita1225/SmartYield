@@ -88,9 +88,7 @@ const Results = ({ response }) => {
         region in future will be
         <span style={{ color: borderColor }}> {textData}</span>
       </h4>
-      <h6
-        className={`absolute w-[250px] text-[2.2rem] font-[500] ${montserrat.className}`}
-      >
+      <h6 className={`text-[1.3rem] font-[500] ${montserrat.className}`}>
         View Your Reports
       </h6>
       <table className="table-auto border  border-[#000] mx-auto my-2">
@@ -112,68 +110,68 @@ const Results = ({ response }) => {
           </td>
         </tr>
       </table>
-      <h6
-        className={`absolute w-[250px] text-[2.2rem] font-[500] ${montserrat.className}`}
-      >
-        districtname Average Data
+      <h6 className={`text-[1.3rem] font-[500] ${montserrat.className}`}>
+        {response.districtName} District Average Data
       </h6>
       <table className="table-auto border  border-[#000] mx-auto my-2">
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2">Average Temprature</td>
+          <td className="border border-[#000] p-2 text-left">
+            Average Temprature
+          </td>
           <td className="border border-[#000] p-2">
             {response.inputData.avgTemp}
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2"> Rainfall</td>
+          <td className="border border-[#000] p-2 text-left"> Rainfall</td>
           <td className="border border-[#000] p-2">
             {response.inputData.rainfall}
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2"> Relative Humidity</td>
+          <td className="border border-[#000] p-2 text-left"> Relative Humidity</td>
           <td className="border border-[#000] p-2">
             {response.inputData.relativeHumidity}
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2"> Soil Temprature</td>
+          <td className="border border-[#000] p-2 text-left"> Soil Temprature</td>
           <td className="border border-[#000] p-2">
             {response.inputData.soilTemp}
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2">Sand</td>
+          <td className="border border-[#000] p-2 text-left">Sand</td>
           <td className="border border-[#000] p-2">
             {response.inputData.sand}
           </td>
         </tr>
-        <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2">phLevel</td>
+        <tr className="border border-[#000] "> 
+          <td className="border border-[#000] p-2 text-left">phLevel</td>
           <td className="border border-[#000] p-2">
             {response.inputData.phLevel}
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2">Phosphorus</td>
+          <td className="border border-[#000] p-2 text-left">Phosphorus</td>
           <td className="border border-[#000] p-2">
-            {response.inputData.phosohorus}
+            {response.inputData.phosphorus}
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2">Potassium</td>
+          <td className="border border-[#000] p-2 text-left">Potassium</td>
           <td className="border border-[#000] p-2">
             {response.inputData.potassium}
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2">Clay</td>
+          <td className="border border-[#000] p-2 text-left">Clay</td>
           <td className="border border-[#000] p-2">
             {response.inputData.clay}
           </td>
         </tr>
         <tr className="border border-[#000] ">
-          <td className="border border-[#000] p-2">Production Area</td>
+          <td className="border border-[#000] p-2 text-left">Production Area</td>
           <td className="border border-[#000] p-2">
             {response.inputData.productionArea}
           </td>
