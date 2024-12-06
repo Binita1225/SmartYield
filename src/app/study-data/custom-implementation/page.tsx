@@ -233,7 +233,7 @@ const Page = () => {
               </button>
             </form>
             {Object.keys(results).length > 0 ? (
-              <div>
+              <div className="text-center">
                 <Results response={results} />
               </div>
             ) : null}

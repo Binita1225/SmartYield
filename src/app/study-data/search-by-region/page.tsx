@@ -84,7 +84,7 @@ export const page = () => {
           </form>
           {userInput.length > 1 && !loading ? (
             <>
-              <div className="absolute w-full bg-[#FAF8F2] h-[200px] overflow-auto border-[]">
+              <div className="absolute w-full bg-[#FAF8F2] h-[200px] overflow-auto border-[] z-50">
                 <p className="text-[#4C6F35] text-[22px] py-3">
                   Search Results :
                 </p>
