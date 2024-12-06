@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ProgressBar from "progressbar.js";
 import { Montserrat } from "next/font/google";
 const montserrat = Montserrat({ subsets: ["latin"] });
-const Results = ({ response }) => {
+const CustomResults = ({ response }) => {
   const containerRef = useRef(null);
   const [prediction, setPrediction] = useState(0.25);
   const [borderColor, setBorderColor] = useState("");
@@ -71,7 +71,7 @@ const Results = ({ response }) => {
       <h5
         className={`text-[1.2rem] pt-5  px-10 text-center font-[500] ${montserrat.className}`}
       >
-        Showing Prediction Result for {response.districtName}
+        Showing Prediction Result
       </h5>
       <div className="relative flex items-center justify-center py-5">
         <div ref={containerRef} className="w-[300px] h-[300px] m-5"></div>
@@ -115,7 +115,7 @@ const Results = ({ response }) => {
       </div>
       <div className="pb-3">
         <h6 className={`text-[1.3rem] font-[500] ${montserrat.className}`}>
-          {response.districtName} District Average Data
+         Users Input Data
         </h6>
         <table className="table-auto border  border-[#000] mx-auto my-2">
           <tr className="border border-[#000] ">
@@ -195,4 +195,4 @@ const Results = ({ response }) => {
   );
 };
 
-export default Results;
+export default CustomResults;

@@ -61,7 +61,7 @@ export const page = () => {
         href="/study-data"
         className="flex items-center justify-center my-3"
       >
-        <button className=" text-red-500 px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-500 hover:text-white">
+        <button className=" bg-red-500  text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 hover:text-white">
           Go Back
         </button>
       </Link>
