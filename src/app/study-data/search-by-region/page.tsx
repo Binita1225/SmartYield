@@ -30,13 +30,19 @@ export const page = () => {
       findDistrict();
     }
   }, [userInput]);
-  
+
   const fetchResults = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const response = await axios.get("");
-      console.log(response);
+      const payload: DistrictData = {
+        district: userInput,
+      };
+      const response = await axios.get(
+        "https://your-api-endpoint.com/resource",
+        payload
+      );
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
