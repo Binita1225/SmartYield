@@ -17,6 +17,7 @@ export const page = () => {
   const [searchresults, setSearchResults] = useState<DistrictData[]>([]);
   const [results, setResults] = useState({});
   const [loading, setLoading] = useState(false);
+  const [userSelect, setUserSelect] = useState("");
   const findDistrict = () => {
     const matchedDistricts = districts.filter((data) =>
       data.district.toLowerCase().includes(userInput.toLowerCase())
@@ -37,16 +38,15 @@ export const page = () => {
     try {
       setLoading(true);
       const payload: DistrictData = {
-        district: userInput,
+        district: userSelect,
       };
       const response = await axios.post(
         `${port}/prediction/getPredictionByDistrict`,
         payload
       );
-      setResults(response.data);
+      setResults(response.data.data);
       setLoading(false);
       setUserInput("");
-      console.log(response.data.data);
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -60,7 +60,7 @@ export const page = () => {
         <h2
           className={`text-[3rem] tracking-[-2.72px] leading-[4.5rem] text-center font-[500] ${montserrat.className}`}
         >
-          Search any Regions of Nepal
+          Search any Districts of Nepal
         </h2>
         <div className="relative">
           <form className="pt-10 flex gap-2" onSubmit={fetchResults}>
@@ -89,7 +89,7 @@ export const page = () => {
                       key={index}
                       className="py-3 cursor-pointer hover:bg-[#F2ECDB]"
                       onClick={() => {
-                        setUserInput(data.district);
+                        setUserSelect(data.district);
                         fetchResults();
                       }}
                     >

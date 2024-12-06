@@ -31,8 +31,12 @@ const HeroBanner = () => {
             millions.
           </p>
           <div className="py-3 flex gap-4">
-            <Link href="#about"><PrimaryButton name="Explore" /></Link>
-            <SecondaryButton name="Study Data" />
+            <Link href="#about">
+              <PrimaryButton name="Explore" />
+            </Link>
+            <Link href="/study-data">
+              <SecondaryButton name="study-data" />
+            </Link>
           </div>
         </div>
       </div>
