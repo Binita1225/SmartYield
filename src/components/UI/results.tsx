@@ -12,7 +12,7 @@ const Results = ({ response }) => {
   const predictionResult = response.predictionResult.prediction;
   useEffect(() => {
     if (predictionResult <= 5000) {
-      setPrediction(0);
+      setPrediction(0.1);
       setBorderColor("#E1015B");
       setTextData("Very Low");
       setTextParagraph(
