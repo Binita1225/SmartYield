@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import axios from "axios";
 import { port } from "@/constants/appl.constant";
-import CustomResults from "@/components/UI/CustomResults";
+import Results from "@/components/UI/results";
 const Page = () => {
   const [rainfall, setRainfall] = useState("");
   const [avgTemp, setAvgTemp] = useState("");
@@ -234,7 +234,7 @@ const Page = () => {
             </form>
             {Object.keys(results).length > 0 ? (
               <div>
-                <CustomResults response={results} />
+                <Results response={results} />
               </div>
             ) : null}
           </div>

@@ -71,7 +71,11 @@ const Results = ({ response }) => {
       <h5
         className={`text-[1.2rem] pt-5  px-10 text-center font-[500] ${montserrat.className}`}
       >
-        Showing Prediction Result for {response.districtName}
+        {response.districtName !== null ? (
+          <>Showing Prediction Result for {response.districtName}</>
+        ) : (
+          <>Showing Result for Users Input</>
+        )}
       </h5>
       <div className="relative flex items-center justify-center py-5">
         <div ref={containerRef} className="w-[300px] h-[300px] m-5"></div>
@@ -115,7 +119,11 @@ const Results = ({ response }) => {
       </div>
       <div className="pb-3">
         <h6 className={`text-[1.3rem] font-[500] ${montserrat.className}`}>
-          {response.districtName} District Average Data
+          {response.districtName !== null ? (
+            <> {response.districtName} District Average Data</>
+          ) : (
+            <>User Input Data</>
+          )}
         </h6>
         <table className="table-auto border  border-[#000] mx-auto my-2">
           <tr className="border border-[#000] ">
