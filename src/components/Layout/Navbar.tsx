@@ -43,8 +43,8 @@ const Navbar = () => {
     },
 
     {
-      name: "How it works",
-      href: "/guide",
+      name: "How To Use",
+      href: "#howtouse",
     },
     {
       name: "Our-team",

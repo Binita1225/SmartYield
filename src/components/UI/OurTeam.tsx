@@ -6,7 +6,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 const OurTeam = () => {
   return (
     <>
-      <section className=" bg-[#fff] py-[180px]" id="our-team">
+      <section className=" bg-[#fff] pt-[180px] pb-[100px]" id="our-team">
         <div className="container mx-auto">
           <p className="ps-3">
             Cultivating agriculture that works for the future

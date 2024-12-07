@@ -6,6 +6,7 @@ import { port } from "@/constants/appl.constant";
 import Results from "@/components/UI/results";
 import LoadingOverlay from "@/components/UI/LoadingSpinner";
 import { Slider } from "@/components/ui/slider";
+import LoginButton from "@/components/UI/LoginButton";
 
 const Page = () => {
   const [rainfall, setRainfall] = useState(33);
@@ -17,7 +18,7 @@ const Page = () => {
   const [phosphorus, setPhosphorus] = useState(30);
   const [potassium, setPotassium] = useState(200);
   const [clay, setClay] = useState(20);
-  const [productionArea, setProductionArea] = useState(1);
+  const [productionArea, setProductionArea] = useState(100);
   const [results, setResults] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +38,7 @@ const Page = () => {
       clay,
       productionArea,
     };
-    console.log(data)
+    console.log(data);
 
     try {
       const response = await axios.post(
@@ -143,12 +144,7 @@ const Page = () => {
                   4000
                 )}
               </div>
-              <button
-                type="submit"
-                className="w-full mt-6 bg-indigo-600 text-white font-bold py-2 px-4 rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              >
-                Submit
-              </button>
+              <LoginButton name="Submit" />
             </form>
             {Object.keys(results).length > 0 ? (
               <div className="text-center">

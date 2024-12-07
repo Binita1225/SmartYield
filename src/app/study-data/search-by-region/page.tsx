@@ -27,7 +27,7 @@ export const page = () => {
     setSearchResults(matchedDistricts);
   };
   useEffect(() => {
-    if (userInput.length > 2) {
+    if (userInput.length > 1) {
       findDistrict();
     }
   }, [userInput]);
