@@ -5,11 +5,13 @@ import Logo from "../UI/Logo";
 import Link from "next/link";
 import PrimaryButton from "../UI/PrimaryButton";
 import NavLogo from "../UI/NavLogo";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+  const userData = JSON.parse(localStorage.getItem("userData")) || {};
+  const router = useRouter();
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
@@ -54,6 +56,12 @@ const Navbar = () => {
       href: "/research",
     },
   ];
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    router.push("/");
+    window.location.reload();
+  };
 
   return (
     <>
@@ -102,13 +110,16 @@ const Navbar = () => {
                 <div className="absolute w-[200px] right-0 top-12 opacity-0 invisible bg-white p-3 rounded shadow-lg transition-all duration-300 group-hover:opacity-100 group-hover:visible">
                   <div className="gird grid-cols-2">
                     <div>Name:</div>
-                    <div>{/*  */}</div>
+                    <div>{userData.name}</div>
                   </div>
                   <div className="gird grid-cols-2">
                     <div>Email:</div>
-                    <div>{/*  */}</div>
+                    <div>{userData.email}</div>
                   </div>
-                  <button className=" bg-red-500 mt-3 w-full text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 hover:text-white">
+                  <button
+                    className=" bg-red-500 mt-3 w-full text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 hover:text-white"
+                    onClick={handleLogout}
+                  >
                     Log Out
                   </button>
                 </div>

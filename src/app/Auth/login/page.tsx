@@ -4,6 +4,7 @@ import axios from "axios";
 import { port } from "@/constants/appl.constant";
 import Logo from "@/components/UI/Logo";
 import LoginButton from "@/components/UI/LoginButton";
+import { useRouter } from "next/navigation";
 
 type userData = {
   email: string;
@@ -12,7 +13,7 @@ type userData = {
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const router = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const payload = { email, password };
@@ -22,12 +23,14 @@ const LoginPage = () => {
       });
 
       console.log(response.data);
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", response.data.accessToken);
       const userData: userData = {
         email: response.data.email,
         name: response.data.name,
       };
       localStorage.setItem("userData", JSON.stringify(userData));
+      router.push("/");
+      window.location.reload();
     } catch (error) {
       console.error("Error during login:", error);
     }
