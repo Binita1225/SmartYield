@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
-    router.replace("/"); 
+    router.replace("/");
     window.location.href = "/";
   };
 
@@ -94,14 +94,21 @@ const Navbar: React.FC = () => {
                 className="cursor-pointer w-10 h-10"
                 alt="User Icon"
               />
-              <div className="absolute w-[200px] right-0 top-12 opacity-0 invisible bg-white p-3 rounded shadow-lg transition-all duration-300 group-hover:opacity-100 group-hover:visible">
-                <div className="grid grid-cols-2">
-                  <div>Name:</div>
-                  <div>{userData?.name || "Guest"}</div>
+              <div className="absolute w-[300px] right-0 top-12 opacity-0 invisible bg-white p-3 rounded shadow-lg transition-all duration-300 group-hover:opacity-100 group-hover:visible">
+                <div className="flex gap-2">
+                  <div className="font-semibold">Name:</div>
+                  <div
+                    className="truncate max-w-[140px]"
+                    title={userData?.name || "Guest"}
+                  >
+                    {userData?.name || "Guest"}
+                  </div>
                 </div>
-                <div className="grid grid-cols-2">
-                  <div>Email:</div>
-                  <div>{userData?.email || "N/A"}</div>
+                <div className="flex gap-2 mt-2">
+                  <div className="font-semibold">Email:</div>
+                  <div className="truncate max-w-[240px]">
+                    {userData?.email || "N/A"}
+                  </div>
                 </div>
                 <button
                   className="bg-red-500 mt-3 w-full text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600"
