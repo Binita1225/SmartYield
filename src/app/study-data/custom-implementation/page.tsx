@@ -97,7 +97,7 @@ const Page = () => {
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-6">
-                {renderSlider("Rainfall (mm)", rainfall, setRainfall, 0, 1000)}
+                {renderSlider("Rainfall (mm)", rainfall, setRainfall, 0, 3000)}
                 {renderSlider(
                   "Average Temperature (°C)",
                   avgTemp,
@@ -122,14 +122,14 @@ const Page = () => {
                 {renderSlider("Sand Content (%)", sand, setSand, 0, 100)}
                 {renderSlider("pH Level", phLevel, setPhLevel, 0, 14, 0.1)}
                 {renderSlider(
-                  "Phosphorus (mg/kg)",
+                  "Phosphorus (kg/Ha)",
                   phosphorus,
                   setPhosphorus,
                   0,
                   500
                 )}
                 {renderSlider(
-                  "Potassium (mg/kg)",
+                  "Potassium (kg/Ha)",
                   potassium,
                   setPotassium,
                   0,
@@ -137,11 +137,11 @@ const Page = () => {
                 )}
                 {renderSlider("Clay Content (%)", clay, setClay, 0, 100)}
                 {renderSlider(
-                  "Production Area (Hector)",
+                  "Production Area (Ha)",
                   productionArea,
                   setProductionArea,
                   0,
-                  4000
+                  40000
                 )}
               </div>
               <LoginButton name="Submit" />

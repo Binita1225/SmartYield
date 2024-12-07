@@ -29,8 +29,8 @@ const LoginPage = () => {
         name: response.data.name,
       };
       localStorage.setItem("userData", JSON.stringify(userData));
-      router.push("/");
-      window.location.reload();
+      router.replace("/");
+      window.location.href = "/";
     } catch (error) {
       console.error("Error during login:", error);
     }
