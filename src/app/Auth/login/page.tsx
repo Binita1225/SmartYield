@@ -4,6 +4,7 @@ import axios from "axios";
 import { port } from "@/constants/appl.constant";
 import Logo from "@/components/UI/Logo";
 import LoginButton from "@/components/UI/LoginButton";
+
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,6 +57,7 @@ const LoginPage = () => {
                 required
               />
             </div>
+
             <div className="w-full">
               <LoginButton name="Login" />
             </div>

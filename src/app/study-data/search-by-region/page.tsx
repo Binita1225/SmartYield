@@ -9,6 +9,7 @@ import axios from "axios";
 import { port } from "@/constants/appl.constant";
 import Link from "next/link";
 import PrimaryButton from "@/components/UI/PrimaryButton";
+import LoadingOverlay from "@/components/UI/LoadingSpinner";
 type DistrictData = {
   district: string;
 };
@@ -109,7 +110,11 @@ export const page = () => {
               </div>
             </>
           ) : null}
-          {loading ? <>Loading</> : null}
+          {loading ? (
+            <>
+              <LoadingOverlay />
+            </>
+          ) : null}
           {Object.keys(results).length > 0 ? (
             <div>
               <Results response={results} />

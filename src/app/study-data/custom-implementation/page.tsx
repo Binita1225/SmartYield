@@ -1,42 +1,52 @@
 "use client";
-import Link from "next/link";
 import React, { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 import { port } from "@/constants/appl.constant";
 import Results from "@/components/UI/results";
+import LoadingOverlay from "@/components/UI/LoadingSpinner";
+import { Slider } from "@/components/ui/slider";
+
 const Page = () => {
-  const [rainfall, setRainfall] = useState("");
-  const [avgTemp, setAvgTemp] = useState("");
-  const [relativeHumidity, setRelativeHumidity] = useState("");
-  const [soilTemp, setSoilTemp] = useState("");
-  const [sand, setSand] = useState("");
-  const [phLevel, setPhLevel] = useState("");
-  const [phosphorus, setPhosphorus] = useState("");
-  const [potassium, setPotassium] = useState("");
-  const [clay, setClay] = useState("");
-  const [productionArea, setProductionArea] = useState("");
+  const [rainfall, setRainfall] = useState(33);
+  const [avgTemp, setAvgTemp] = useState(25);
+  const [relativeHumidity, setRelativeHumidity] = useState(50);
+  const [soilTemp, setSoilTemp] = useState(20);
+  const [sand, setSand] = useState(40);
+  const [phLevel, setPhLevel] = useState(7);
+  const [phosphorus, setPhosphorus] = useState(30);
+  const [potassium, setPotassium] = useState(200);
+  const [clay, setClay] = useState(20);
+  const [productionArea, setProductionArea] = useState(1);
   const [results, setResults] = useState({});
   const [loading, setLoading] = useState(false);
-  const handleSubmit = async (e: any) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+
     const data = {
-      rainfall: parseFloat(rainfall),
-      avgTemp: parseFloat(avgTemp),
-      relativeHumidity: parseFloat(relativeHumidity),
-      soilTemp: parseFloat(soilTemp),
-      sand: parseFloat(sand),
-      phLevel: parseFloat(phLevel),
-      phosphorus: parseFloat(phosphorus),
-      potassium: parseFloat(potassium),
-      clay: parseFloat(clay),
-      productionArea: parseInt(productionArea, 10),
+      rainfall,
+      avgTemp,
+      relativeHumidity,
+      soilTemp,
+      sand,
+      phLevel,
+      phosphorus,
+      potassium,
+      clay,
+      productionArea,
     };
+    console.log(data)
 
     try {
-      const response = await axios.post(`${port}/prediction/GetPredictionByCustomData`, data, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await axios.post(
+        `${port}/prediction/GetPredictionByCustomData`,
+        data,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       setResults(response.data.data);
       setLoading(false);
     } catch (error) {
@@ -45,18 +55,40 @@ const Page = () => {
     }
   };
 
+  const renderSlider = (
+    label: string,
+    value: number,
+    setValue: React.Dispatch<React.SetStateAction<number>>,
+    min: number,
+    max: number,
+    step = 1
+  ) => (
+    <div>
+      <label className="block text-sm font-medium text-gray-700">{label}</label>
+      <Slider
+        value={[value]}
+        onValueChange={(val) => setValue(val[0])}
+        min={min}
+        max={max}
+        step={step}
+        className="py-2"
+      />
+      <p className="text-sm text-gray-500">{value}</p>
+    </div>
+  );
+
   return (
     <>
       <div className="flex items-center justify-center pt-10 bg-[#F2ECDB]">
         <Link href="/study-data">
-          <button className=" bg-red-500  text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 hover:text-white">
+          <button className="bg-red-500 text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 hover:text-white">
             Go Back
           </button>
         </Link>
       </div>
       <div className="min-h-screen flex items-center justify-center bg-[#F2ECDB]">
         {loading ? (
-          <>Loading</>
+          <LoadingOverlay />
         ) : (
           <div className="bg-[#FAF8F2] shadow-md rounded-lg p-8 max-w-[800px] w-full my-5">
             <h2 className="text-2xl font-bold mb-6 text-gray-700 text-center">
@@ -64,166 +96,52 @@ const Page = () => {
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Rainfall (mm)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={rainfall}
-                    onChange={(e) => setRainfall(e.target.value)}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Average Temperature (°C)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={avgTemp}
-                    onChange={(e) => setAvgTemp(e.target.value)}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Relative Humidity (%)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={relativeHumidity}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    onChange={(e) => setRelativeHumidity(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Soil Temperature (°C)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={soilTemp}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    onChange={(e) => setSoilTemp(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Sand Content (%)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={sand}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    onChange={(e) => setSand(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    pH Level
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={phLevel}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    onChange={(e) => setPhLevel(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Phosphorus (mg/kg)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={phosphorus}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    onChange={(e) => setPhosphorus(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Potassium (mg/kg)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={potassium}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    onChange={(e) => setPotassium(e.target.value)}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Clay Content (%)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={clay}
-                    onChange={(e) => setClay(e.target.value)}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Production Area (sqm)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.01"
-                    value={productionArea}
-                    onChange={(e) => setProductionArea(e.target.value)}
-                    style={{
-                      appearance: "textfield",
-                      MozAppearance: "textfield",
-                    }}
-                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm p-2"
-                  />
-                </div>
+                {renderSlider("Rainfall (mm)", rainfall, setRainfall, 0, 1000)}
+                {renderSlider(
+                  "Average Temperature (°C)",
+                  avgTemp,
+                  setAvgTemp,
+                  -10,
+                  50
+                )}
+                {renderSlider(
+                  "Relative Humidity (%)",
+                  relativeHumidity,
+                  setRelativeHumidity,
+                  0,
+                  100
+                )}
+                {renderSlider(
+                  "Soil Temperature (°C)",
+                  soilTemp,
+                  setSoilTemp,
+                  -10,
+                  50
+                )}
+                {renderSlider("Sand Content (%)", sand, setSand, 0, 100)}
+                {renderSlider("pH Level", phLevel, setPhLevel, 0, 14, 0.1)}
+                {renderSlider(
+                  "Phosphorus (mg/kg)",
+                  phosphorus,
+                  setPhosphorus,
+                  0,
+                  500
+                )}
+                {renderSlider(
+                  "Potassium (mg/kg)",
+                  potassium,
+                  setPotassium,
+                  0,
+                  1000
+                )}
+                {renderSlider("Clay Content (%)", clay, setClay, 0, 100)}
+                {renderSlider(
+                  "Production Area (Hector)",
+                  productionArea,
+                  setProductionArea,
+                  0,
+                  4000
+                )}
               </div>
               <button
                 type="submit"
