@@ -21,7 +21,7 @@ const page = () => {
     },
   ];
   return (
-    <div className="container mx-auto h-[80vh] pt-[130px]" id="howtouse">
+    <div className="container mx-auto h-[90vh] pt-[130px]" id="howtouse">
       <div
         className={`text-[4rem] tracking-[-1.72px] leading-[4.5rem] text-center font-[600] ${montserrat.className}`}
       >

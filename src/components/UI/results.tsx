@@ -27,7 +27,7 @@ const Results = ({ response }) => {
       );
     } else if (predictionResult >= 15001 && predictionResult <= 25000) {
       setPrediction(0.6);
-      setBorderColor("#A6E892");
+      setBorderColor("#3ea41f");
       setTextData("Medium");
       setTextParagraph(
         "The prediction indicates a medium wheat yield, but there is potential to enhance productivity further. Start by ensuring optimal soil health through regular testing and the addition of organic matter or fertilizers based on soil nutrient needs. Maintain efficient water management by providing adequate irrigation, particularly during critical growth stages like tillering and grain filling, while avoiding overwatering. Use certified seeds suited to your region, focusing on varieties known for higher yields and resilience. Balanced fertilizer application, based on soil test results, can help maximize nutrient efficiency. Additionally, monitor your crops for pests and diseases, implementing timely and appropriate control measures. With these steps, you can improve your yield and work toward maximizing your crop's potential."

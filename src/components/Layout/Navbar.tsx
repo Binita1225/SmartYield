@@ -17,7 +17,6 @@ const Navbar = () => {
   const handleScroll = () => {
     const offset = window.scrollY;
     if (offset > 100) {
-      // Trigger pop down after scrolling 100px
       setScrolled(true);
     } else {
       setScrolled(false);
@@ -87,9 +86,34 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="max-lg:hidden">
-            <Link href="/Auth/login">
-              <PrimaryButton name="Login" />
-            </Link>
+            {!localStorage.getItem("token") ? (
+              <>
+                <Link href="/Auth/login">
+                  <PrimaryButton name="Login" />
+                </Link>
+              </>
+            ) : (
+              <div className="relative group inline-block">
+                <img
+                  src="/man.png"
+                  className="cursor-pointer w-10 h-10"
+                  alt="Man Icon"
+                />
+                <div className="absolute w-[200px] right-0 top-12 opacity-0 invisible bg-white p-3 rounded shadow-lg transition-all duration-300 group-hover:opacity-100 group-hover:visible">
+                  <div className="gird grid-cols-2">
+                    <div>Name:</div>
+                    <div>{/*  */}</div>
+                  </div>
+                  <div className="gird grid-cols-2">
+                    <div>Email:</div>
+                    <div>{/*  */}</div>
+                  </div>
+                  <button className=" bg-red-500 mt-3 w-full text-white px-5 py-2 rounded-md font-semibold transition-all duration-300 hover:bg-red-600 hover:text-white">
+                    Log Out
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
           <button
             className="lg:hidden"

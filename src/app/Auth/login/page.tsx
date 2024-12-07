@@ -5,24 +5,34 @@ import { port } from "@/constants/appl.constant";
 import Logo from "@/components/UI/Logo";
 import LoginButton from "@/components/UI/LoginButton";
 
+type userData = {
+  email: string;
+  name: string;
+};
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
     const payload = { email, password };
-
     try {
-      const response = await axios.post(`${port}`, payload, {
+      const response = await axios.post(`${port}/user/login`, payload, {
         headers: { "Content-Type": "application/json" },
       });
-      console.log("response");
+
+      console.log(response.data);
+      localStorage.setItem("token", response.data.token);
+      const userData: userData = {
+        email: response.data.email,
+        name: response.data.name,
+      };
+      localStorage.setItem("userData", JSON.stringify(userData));
     } catch (error) {
-      console.log(error);
+      console.error("Error during login:", error);
     }
   };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#F2ECDB] bg-cover ">
       <div className="w-[900px] bg-[url('/login-bg.svg')] bg-no-repeat bg-contain h-[50vh]">
