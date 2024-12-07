@@ -45,6 +45,7 @@ html {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -77,7 +78,27 @@ html {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+:root {
+  --background-1: url('/background-1.jpg');
+  --background-2: url('/background-2.jpg');
+  --background-3: url('/background-4.jpg');
+  --background-4: url('/background-5.png');
+  --background-5: url('/background-6.jpg');
+  --background-6: url('/background-7.jpg');
+  --background-7: url('/background-3.jpg');
+
+  --black: url('/background-2.jpg');
+  --neutral-900: #3f3f3f;
+  --cyan-500: #06b6d4;
+  --emerald-500: #10b981;
+  --pink-500: #ec4899;
+  --indigo-500: #6366f1;
+  --orange-500: #f97316;
+  --yellow-500: #facc15;
 }

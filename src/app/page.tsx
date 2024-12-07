@@ -1,3 +1,4 @@
+import Research from "@/components/Research";
 import Aboutus from "@/components/UI/Aboutus";
 import CustomDataImplementatino from "@/components/UI/CustomDataImplementatino";
 import HeroBanner from "@/components/UI/HeroBanner";
@@ -40,6 +41,7 @@ const page = () => {
         />
       </div>
       <OurTeam />
+      <Research />
     </>
   );
 };

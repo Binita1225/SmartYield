@@ -39,20 +39,20 @@ const Navbar = () => {
     },
     {
       name: "About",
-      href: "#about",
+      href: "/about",
     },
 
     {
       name: "How To Use",
-      href: "#howtouse",
+      href: "/howtouse",
     },
     {
       name: "Our-team",
-      href: "#our-team",
+      href: "/our-team",
     },
     {
-      name: "Contact",
-      href: "/contact",
+      name: "Research",
+      href: "/research",
     },
   ];
 
