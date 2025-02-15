@@ -5,40 +5,53 @@ import { port } from "@/constants/appl.constant";
 import Logo from "@/components/UI/Logo";
 import LoginButton from "@/components/UI/LoginButton";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 type userData = {
   email: string;
   name: string;
   role: string;
 };
-const LoginPage = () => {
+const page = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const payload = { email, password };
+
     try {
       const response = await axios.post(`${port}/user/login`, payload, {
         headers: { "Content-Type": "application/json" },
       });
 
       console.log(response.data);
+
       localStorage.setItem("token", response.data.accessToken);
-      const userData: userData = {
-        email: response.data.email,
-        name: response.data.name,
-        role: response.data.role,
-      };
-      localStorage.setItem("userData", JSON.stringify(userData));
-      if (userData.role == "SuperAdmin" || userData.role == "Admin") {
+      localStorage.setItem("userData", JSON.stringify(response.data));
+
+      Cookies.set("token", response.data.accessToken, {
+        expires: 1,
+        path: "/",
+      });
+      Cookies.set(
+        "userData",
+        JSON.stringify({
+          email: response.data.email,
+          name: response.data.name,
+          role: response.data.role,
+        }),
+        { expires: 1, path: "/" }
+      );
+
+      if (
+        response.data.role === "SuperAdmin" ||
+        response.data.role === "Admin"
+      ) {
         window.location.href = "/admin";
-      }
-      else if(userData.role == "User") {
+      } else {
         window.location.href = "/";
       }
-    
-     
     } catch (error) {
       console.error("Error during login:", error);
     }
@@ -89,4 +102,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default page;
