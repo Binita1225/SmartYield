@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
   const [userData, setUserData] = useState<{
     name?: string;
     email?: string;
+    role: string;
   } | null>(null);
   const router = useRouter();
 
@@ -77,13 +78,21 @@ const Navbar: React.FC = () => {
           </Link>
         </div>
         <div className="max-lg:hidden">
-          <ul className="flex gap-7">
-            {navLinks.map((navLink, index) => (
-              <li key={index}>
-                <Link href={navLink.href}>{navLink.name}</Link>
-              </li>
-            ))}
-          </ul>
+          {userData?.role != "Admin" ? (
+            <>
+              <Link href="/admin/user">Users</Link>
+            </>
+          ) : (
+            <>
+              <ul className="flex gap-7">
+                {navLinks.map((navLink, index) => (
+                  <li key={index}>
+                    <Link href={navLink.href}>{navLink.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
         <div className="max-lg:hidden">
           {token === null ? (
