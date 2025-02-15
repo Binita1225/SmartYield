@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [token, setToken] = useState<null | string>(null);
   const [userData, setUserData] = useState<{
     name?: string;
     email?: string;
@@ -23,8 +24,10 @@ const Navbar: React.FC = () => {
     const offset = window.scrollY;
     setScrolled(offset > 100);
   };
-
   useEffect(() => {
+    localStorage.getItem("token");
+    setToken(localStorage.getItem("token"));
+    console.log(token);
     window.addEventListener("scroll", handleScroll);
     const storedUserData = localStorage.getItem("userData");
     if (storedUserData) {
@@ -83,7 +86,7 @@ const Navbar: React.FC = () => {
           </ul>
         </div>
         <div className="max-lg:hidden">
-          {!localStorage.getItem("token") ? (
+          {token === null ? (
             <Link href="/Auth/login">
               <PrimaryButton name="Login" />
             </Link>
@@ -91,7 +94,7 @@ const Navbar: React.FC = () => {
             <div className="relative group inline-block">
               <img
                 src="/man.png"
-                className="cursor-pointer w-10 h-10"
+                className="cursor-pointer w-10 h-10 rounded-full"
                 alt="User Icon"
               />
               <div className="absolute w-[300px] right-0 top-12 opacity-0 invisible bg-white p-3 rounded shadow-lg transition-all duration-300 group-hover:opacity-100 group-hover:visible">
@@ -106,7 +109,10 @@ const Navbar: React.FC = () => {
                 </div>
                 <div className="flex gap-2 mt-2">
                   <div className="font-semibold">Email:</div>
-                  <div className="truncate max-w-[240px]">
+                  <div
+                    className="truncate max-w-[240px]"
+                    title={userData?.email || "N/A"}
+                  >
                     {userData?.email || "N/A"}
                   </div>
                 </div>

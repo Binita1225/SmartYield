@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 type userData = {
   email: string;
   name: string;
+  role: string;
 };
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -27,10 +28,17 @@ const LoginPage = () => {
       const userData: userData = {
         email: response.data.email,
         name: response.data.name,
+        role: response.data.role,
       };
       localStorage.setItem("userData", JSON.stringify(userData));
-      router.replace("/");
-      window.location.href = "/";
+      if (userData.role == "SuperAdmin" || userData.role == "Admin") {
+        window.location.href = "/admin";
+      }
+      else if(userData.role == "User") {
+        window.location.href = "/";
+      }
+    
+     
     } catch (error) {
       console.error("Error during login:", error);
     }
