@@ -29,35 +29,36 @@ const AdminPage = () => {
   }
 
   const handleDatasetDownload = () => {
-    const datasetUrl = "/public/Dataset.csv";
+    const datasetUrl = "/Dataset.csv";
     const a = document.createElement("a");
     a.href = datasetUrl;
-    a.download = "dataset.zip";
+    a.download = "Dataset.csv";
     a.click();
   };
   const handleDocumnetDownload = () => {
-    const datasetUrl = "/public/Document.pdf";
+    const datasetUrl = "/Document.pdf";
     const a = document.createElement("a");
     a.href = datasetUrl;
-    a.download = "dataset.zip";
+    a.download = "Document.pdf";
     a.click();
   };
   const handlemodalcode = () => {
-    const datasetUrl = "/public/Model.py";
+    const datasetUrl = "/Model.py";
     const a = document.createElement("a");
     a.href = datasetUrl;
-    a.download = "dataset.zip";
+    a.download = "Model.py";
     a.click();
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto py-[120px]">
+      <h2 className="pb-5 text-center">Admin Dashboard</h2>
       <div className="grid grid-cols-2 items-center gap-10">
         <div>
           <h3 className="text-[3rem] tracking-[-2.72px] leading-[4.5rem] text-center font-[500] __className_4bc053">
             Our Sample Snapshot
           </h3>
-          <img src="/datasetimage" width="100%" />
+          <img src="/datasetimage.webp" width="100%" />
         </div>
         <div>
           <div className="flex flex-wrap items-center gap-10">
@@ -67,11 +68,14 @@ const AdminPage = () => {
             <span onClick={handleDocumnetDownload}>
               <SecondaryButton name="Download Documentation" />
             </span>
-            <span  onClick={handlemodalcode} >
-            <PrimaryButton name="Download Modal" />
+            <span onClick={handlemodalcode}>
+              <PrimaryButton name="Download Modal" />
             </span>
           </div>
         </div>
+      </div>
+      <div className="py-10">
+        <img src="/perfomance-evaluation.webp" />
       </div>
     </div>
   );
