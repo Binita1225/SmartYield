@@ -97,7 +97,7 @@ const Page = () => {
             </h2>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-6">
-                {renderSlider("Rainfall (mm)", rainfall, setRainfall, 0, 3000)}
+                {renderSlider("Rainfall (mm)", rainfall, setRainfall, 0, 2000)}
                 {renderSlider(
                   "Average Temperature (°C)",
                   avgTemp,
