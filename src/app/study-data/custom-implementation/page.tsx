@@ -5,7 +5,7 @@ import Link from "next/link";
 import { port } from "@/constants/appl.constant";
 import Results from "@/components/UI/results";
 import LoadingOverlay from "@/components/UI/LoadingSpinner";
-import { Slider } from "@/components/ui/slider";
+import { Slider } from "@/components/UI/slider";
 import LoginButton from "@/components/UI/LoginButton";
 
 const Page = () => {
