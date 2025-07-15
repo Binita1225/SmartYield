@@ -43,7 +43,7 @@ export const page = () => {
         district: selectedDistrict,
       };
       const response = await axios.post(
-        `${port}/prediction/getPredictionByDistrict`,
+        `${port}/prediction/GetPrediction`,
         payload
       );
       setResults(response.data.data);

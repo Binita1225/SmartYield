@@ -1,9 +1,17 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+// Add this at the top of the file to declare the module if types are missing
+// @ts-ignore
 import ProgressBar from "progressbar.js";
 import { Montserrat } from "next/font/google";
 const montserrat = Montserrat({ subsets: ["latin"] });
-const Results = ({ response }) => {
+
+// Define a type for the response prop
+interface ResultsProps {
+  response: any; // You can replace 'any' with a more specific type if known
+}
+
+const Results = ({ response }: ResultsProps) => {
   const containerRef = useRef(null);
   const [prediction, setPrediction] = useState(0.25);
   const [borderColor, setBorderColor] = useState("");
@@ -98,23 +106,25 @@ const Results = ({ response }) => {
           View Your Reports
         </h6>
         <table className="table-auto border  border-[#000] mx-auto my-2">
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2">Predicted Value</td>
-            <td className="border border-[#000] p-2">
-              <span style={{ color: borderColor }}>{predictionResult}</span>
-            </td>
-          </tr>
-          <tr className="border border-[#000]">
-            <td className="border border-[#000] p-2">
-              Predicted Value Per Hectare Area
-            </td>
-            <td className="border border-[#000] p-2">
-              <span style={{ color: borderColor }}>
-                {predictionResult / response.inputData.productionArea}{" "}
-              </span>
-              Per Hector Area
-            </td>
-          </tr>
+          <tbody>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2">Predicted Value</td>
+              <td className="border border-[#000] p-2">
+                <span style={{ color: borderColor }}>{predictionResult}</span>
+              </td>
+            </tr>
+            <tr className="border border-[#000]">
+              <td className="border border-[#000] p-2">
+                Predicted Value Per Hectare Area
+              </td>
+              <td className="border border-[#000] p-2">
+                <span style={{ color: borderColor }}>
+                  {predictionResult / response.inputData.productionArea}{" "}
+                </span>
+                Per Hector Area
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <div className="pb-3">
@@ -126,76 +136,78 @@ const Results = ({ response }) => {
           )}
         </h6>
         <table className="table-auto border  border-[#000] mx-auto my-2">
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left">
-              Average Temprature
-            </td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.avgTemp}
-            </td>
-          </tr>
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left"> Rainfall</td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.rainfall}
-            </td>
-          </tr>
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left">
-              {" "}
-              Relative Humidity
-            </td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.relativeHumidity}
-            </td>
-          </tr>
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left">
-              {" "}
-              Soil Temprature
-            </td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.soilTemp}
-            </td>
-          </tr>
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left">Sand</td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.sand}
-            </td>
-          </tr>
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left">phLevel</td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.phLevel}
-            </td>
-          </tr>
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left">Phosphorus</td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.phosphorus}
-            </td>
-          </tr>
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left">Potassium</td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.potassium}
-            </td>
-          </tr>
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left">Clay</td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.clay}
-            </td>
-          </tr>
-          <tr className="border border-[#000] ">
-            <td className="border border-[#000] p-2 text-left">
-              Production Area
-            </td>
-            <td className="border border-[#000] p-2">
-              {response.inputData.productionArea}
-            </td>
-          </tr>
+          <tbody>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left">
+                Average Temprature
+              </td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.avgTemp}
+              </td>
+            </tr>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left"> Rainfall</td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.rainfall}
+              </td>
+            </tr>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left">
+                {" "}
+                Relative Humidity
+              </td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.relativeHumidity}
+              </td>
+            </tr>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left">
+                {" "}
+                Soil Temprature
+              </td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.soilTemp}
+              </td>
+            </tr>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left">Sand</td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.sand}
+              </td>
+            </tr>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left">phLevel</td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.phLevel}
+              </td>
+            </tr>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left">Phosphorus</td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.phosphorus}
+              </td>
+            </tr>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left">Potassium</td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.potassium}
+              </td>
+            </tr>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left">Clay</td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.clay}
+              </td>
+            </tr>
+            <tr className="border border-[#000] ">
+              <td className="border border-[#000] p-2 text-left">
+                Production Area
+              </td>
+              <td className="border border-[#000] p-2">
+                {response.inputData.productionArea}
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
       <p className="left mt-5 text-[#3b3f44] px-10">{textParagraph}</p>
